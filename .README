@@ -1,0 +1,15 @@
+- Have a main page
+
+- Add user auth
+
+- User can register / login
+
+- Register via username / password
+
+- Each user gets their own profile
+
+- Can customize profile with certain personal information
+
+- Users can add each other as friends
+
+- Main page while logged in shows friends status
