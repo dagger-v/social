@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,16 +6,66 @@ a {
   color: #00b7ff;
 }
 
-nav {
+.navbar {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
   ul {
-    border: 1px solid black;
+    display: flex;
+    padding: 0;
   }
-
   li {
-    color: red;
+    margin: 0 1em;
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
   }
 }
 
-.hi {
-  color: yellow;
+.login__form {
+  border: 1px solid black;
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 0 1rem;
+  width: 780px;
+
+  form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"],
+  a {
+    width: 100%;
+    background-color: #00b7ff;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #04acee;
+  }
+  a {
+    background-color: #4caf50;
+  }
 }
