@@ -1,8 +1,8 @@
 <%- include("header"); -%>
+<div class="login__form">
+  <form action="/users/login" method="post">
+    <h3>Log In</h3>
 
-<div class="register__form">
-  <form action="/users/register" method="post">
-    <h3>Register</h3>
     <div>
       <label for="username"></label>
       <input type="text" name="username" placeholder="Username" />
@@ -13,8 +13,7 @@
       <input type="password" placeholder="Password" />
     </div>
 
-    <input class="register__btn" type="submit" value="Register" />
+    <input type="submit" value="Log In" />
   </form>
 </div>
-
 <%- include("footer"); -%>

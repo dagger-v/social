@@ -23,7 +23,8 @@ a {
   text-decoration: none;
 }
 
-.login__form {
+.login__form,
+.register__form {
   border: 1px solid black;
   box-sizing: border-box;
   margin: 0 auto;
@@ -32,14 +33,18 @@ a {
   padding: 0 1rem;
   width: 780px;
 }
-.login__form form {
+.login__form form,
+.register__form form {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
 }
-.login__form input[type=email],
+.login__form input[type=text],
 .login__form input[type=password],
-.login__form select {
+.login__form select,
+.register__form input[type=text],
+.register__form input[type=password],
+.register__form select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -49,7 +54,9 @@ a {
   box-sizing: border-box;
 }
 .login__form input[type=submit],
-.login__form a {
+.login__form a,
+.register__form input[type=submit],
+.register__form a {
   width: 100%;
   background-color: #00b7ff;
   color: white;
@@ -59,11 +66,13 @@ a {
   border-radius: 4px;
   cursor: pointer;
 }
-.login__form input[type=submit]:hover {
+.login__form input[type=submit]:hover,
+.register__form input[type=submit]:hover {
   background-color: #04acee;
 }
-.login__form a {
-  background-color: #4caf50;
+.login__form .register__btn,
+.register__form .register__btn {
+  background-color: #4caf50 !important;
 }
 
 /*# sourceMappingURL=style.css.map */

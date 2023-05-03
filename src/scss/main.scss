@@ -23,7 +23,8 @@ a {
   }
 }
 
-.login__form {
+.login__form,
+.register__form {
   border: 1px solid black;
   box-sizing: border-box;
   margin: 0 auto;
@@ -38,7 +39,7 @@ a {
     padding: 20px;
   }
 
-  input[type="email"],
+  input[type="text"],
   input[type="password"],
   select {
     width: 100%;
@@ -65,7 +66,7 @@ a {
   input[type="submit"]:hover {
     background-color: #04acee;
   }
-  a {
-    background-color: #4caf50;
+  .register__btn {
+    background-color: #4caf50 !important;
   }
 }
