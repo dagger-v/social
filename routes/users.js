@@ -8,17 +8,41 @@ const passport = require("passport");
 passport.use(User.createStrategy());
 
 // Serialize and deserialize user
-passport.serializeUser(function (user, done) {
-  done(null, user.id);
-});
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-    done(err, user);
+passport.serializeUser(function (user, cb) {
+  process.nextTick(function () {
+    cb(null, { id: user.id, username: user.username });
   });
 });
 
+passport.deserializeUser(function (user, cb) {
+  process.nextTick(function () {
+    return cb(null, user);
+  });
+});
+
+/* GET users listing. */
+router.get("/", function (req, res, next) {
+  res.send("respond with a resource");
+});
+
+router.get("/register", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
+    res.render("register");
+  }
+});
+
+router.get("/login", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
+    res.render("login");
+  }
+});
+
 // Register user in DB
-router.post("/users/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     // Register user
     const registerUser = await User.register(
@@ -38,7 +62,7 @@ router.post("/users/register", async (req, res) => {
 });
 
 // Login user
-router.post("/users/login", (req, res) => {
+router.post("/login", (req, res) => {
   // Create new user object
   const user = new User({
     username: req.body.username,
@@ -60,23 +84,12 @@ router.post("/users/login", (req, res) => {
 // Logout user
 router.get("/logout", (req, res) => {
   // Use passport logout method
-  req.logout();
-  res.redirect("/");
-});
-
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-router.get("/register", (req, res) => {
-  res.render("register");
-});
-
-router.get("/login", (req, res) => {
-  res.render("login");
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
-
-// 26:35

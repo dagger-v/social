@@ -4,13 +4,13 @@
   <form action="/users/register" method="post">
     <h3>Register</h3>
     <div>
-      <label for="username"></label>
-      <input type="text" name="username" placeholder="Username" />
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" required />
     </div>
 
     <div>
-      <label for="password"></label>
-      <input type="password" placeholder="Password" />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required />
     </div>
 
     <input class="register__btn" type="submit" value="Register" />
