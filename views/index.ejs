@@ -1,7 +1,21 @@
 <%- include("header"); -%>
 
 <main>
-  <p>hi</p>
+  <div class="content__form">
+    <form action="" method="POST">
+      <div>
+        <label for="content">Write Your Content</label>
+        <textarea
+          id="content"
+          type="text"
+          name="content"
+          required
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
 </main>
 
 <%- include("footer"); -%>

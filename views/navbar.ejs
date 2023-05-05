@@ -5,11 +5,17 @@
     </li>
   </ul>
   <ul class="navbar__right">
+    <% if (!isAuthenticated) { %>
     <li>
-      <a href="">Register</a>
+      <a href="/users/register">Register</a>
     </li>
     <li>
-      <a href="">Login</a>
+      <a href="/users/login">Login</a>
     </li>
+    <% } else { %>
+    <li>
+      <a href="/users/logout">Logout</a>
+    </li>
+    <% } %>
   </ul>
 </nav>

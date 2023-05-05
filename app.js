@@ -42,6 +42,13 @@ app.use(passport.initialize());
 // use passport to deal with session
 app.use(passport.session());
 
+// locals
+app.use(function (req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.user = req.user;
+  next();
+});
+
 // connect to DB
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.DB_CONNECT;
