@@ -2,7 +2,14 @@ var express = require("express");
 var router = express.Router();
 
 const User = require("../models/User");
+const Status = require("../models/Status");
+const FriendRequest = require("../models/friendRequest");
+
 const passport = require("passport");
+
+const { body, validationResult } = require("express-validator");
+
+const async = require("async");
 
 // create passport local strategy
 passport.use(User.createStrategy());
@@ -21,9 +28,6 @@ passport.deserializeUser(function (user, cb) {
 });
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
-});
 
 router.get("/register", (req, res) => {
   if (req.isAuthenticated()) {
@@ -91,5 +95,68 @@ router.get("/logout", (req, res) => {
     res.redirect("/");
   });
 });
+
+// User Profile
+// router.get("/profile", (req, res) => {
+//   res.render("profile");
+// });
+
+router.get("/:user", function (req, res, next) {
+  const user = req.user.username;
+  const id = req.params.user;
+  Status.find({}, "content author createdAt")
+    .sort({ title: 1 })
+    .exec(function (err, list_status) {
+      if (err) {
+        return next(err);
+      }
+      res.render("profile", { status_list: list_status, user: user, id: id });
+    });
+  console.log(user);
+  console.log(id);
+});
+
+router.post("/:user", [
+  // Validate and sanitize fields.
+  body("content", "Content must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  // Process request after validation and sanitization.
+  (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create an article object with escaped and trimmed data.
+    const status = new Status({
+      content: req.body.content,
+      author: req.body.author,
+    });
+
+    if (!errors.isEmpty()) {
+      // Get all authors and genres for form.
+      async.parallel((err, results) => {
+        if (err) {
+          return next(err);
+        }
+        res.render("profile", {
+          content: content,
+          author: author,
+          status,
+          errors: errors.array(),
+        });
+      });
+      return;
+    }
+
+    // Data from form is valid. Save article.
+    status.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
+  },
+]);
 
 module.exports = router;

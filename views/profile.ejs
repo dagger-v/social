@@ -1,0 +1,29 @@
+<%- include("header"); -%>
+
+<div class="content">
+  <div class="banner"></div>
+  <div class="follow">
+    <form action="/send-request" method="POST">
+      <input type="text" name="toUser" placeholder="Enter username" />
+      <button type="submit">Send request</button>
+    </form>
+  </div>
+  <div>
+    <h1><%= user.username %></h1>
+  </div>
+
+  <% status_list.forEach(function(status) { %> <% const options = { month:
+  'short', day: 'numeric' }; %> <% if (status.author === id) { %>
+  <div class="status">
+    <p class="status__name">
+      <%= user %> <span>@<%= user %> </span> · <%=
+      status.createdAt.toLocaleDateString("en-US", options) %>
+    </p>
+    <p><%= status.content %></p>
+    <p><%= status.author %></p>
+    <button class="like-btn">♡</button>
+  </div>
+  <% } %> <% }); %>
+</div>
+
+<%- include("footer"); -%>

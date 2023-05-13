@@ -1,0 +1,21 @@
+<ul>
+  <% requests.forEach(request => { %>
+  <li>
+    <%= request.fromUser.username %>
+    <form
+      action="/requests/<%= request._id %>/accept"
+      method="POST"
+      style="display: inline"
+    >
+      <button type="submit">Accept</button>
+    </form>
+    <form
+      action="/requests/<%= request._id %>/reject"
+      method="POST"
+      style="display: inline"
+    >
+      <button type="submit">Reject</button>
+    </form>
+  </li>
+  <% }); %>
+</ul>

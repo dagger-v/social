@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 
-// Create User Schema
+// Create Status Schema
 const statusSchema = new mongoose.Schema({
   content: { type: String, required: true },
+  author: String,
   createdAt: { type: Date, default: Date.now },
 });
 
-// hash password
-statusSchema.plugin(passportLocalMongoose);
-
-module.exports = mongoose.model("User", statusSchema);
+module.exports = mongoose.model("Status", statusSchema);

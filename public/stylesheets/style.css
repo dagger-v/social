@@ -6,8 +6,42 @@ a {
   color: #00b7ff;
 }
 
+.content {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 0 1rem;
+  width: 780px;
+}
+
+.banner {
+  width: 100%;
+  height: 198px;
+  background-color: black;
+  margin-top: 10px;
+}
+
+.follow {
+  text-align: right;
+  margin-top: 5px;
+}
+.follow button {
+  background-color: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 100px;
+  color: #000;
+  cursor: pointer;
+  font-family: "Segoe UI";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  padding: 0px 20px;
+}
+
 .navbar {
-  border: 1px solid black;
   display: flex;
   justify-content: space-between;
 }
@@ -73,6 +107,62 @@ a {
 .login__form .register__btn,
 .register__form .register__btn {
   background-color: #4caf50 !important;
+}
+
+.main__home form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.main__home textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+.main__home button {
+  background-color: #008cba;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  width: 50%;
+}
+
+.status {
+  border: 1px solid #f6f1f1;
+  padding: 5px;
+}
+.status .status__name {
+  color: #050505;
+  font: 15px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+.status span {
+  color: #69676d;
+}
+.status button {
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 24px;
+}
+.status button:hover {
+  color: #ef0107;
+}
+.status p {
+  font-family: "Roboto", sans-serif;
 }
 
 /*# sourceMappingURL=style.css.map */
