@@ -96,11 +96,6 @@ router.get("/logout", (req, res) => {
   });
 });
 
-// User Profile
-// router.get("/profile", (req, res) => {
-//   res.render("profile");
-// });
-
 router.get("/:user", function (req, res, next) {
   const user = req.user.username;
   const id = req.params.user;

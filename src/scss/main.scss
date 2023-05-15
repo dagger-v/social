@@ -108,8 +108,10 @@ a {
 .main__home {
   form {
     border-radius: 5px;
-    background-color: #f2f2f2;
     padding: 20px;
+    min-width: 150px;
+    max-width: 600px;
+    width: 100%;
   }
   textarea {
     width: 100%;
@@ -126,14 +128,19 @@ a {
     background-color: #008cba;
     font-size: 16px;
     border: none;
-    border-radius: 10px;
     color: white;
     cursor: pointer;
     display: inline-block;
-    padding: 10px 15px;
+    padding: 0 10px;
     text-align: center;
     text-decoration: none;
-    width: 50%;
+  }
+  .submit_area {
+    display: flex;
+    flex-direction: row;
+  }
+  .submit_area p {
+    padding-right: 50px;
   }
 }
 
@@ -166,4 +173,11 @@ a {
   p {
     font-family: "Roboto", sans-serif;
   }
+}
+
+.sidenav {
+  border: 1px solid black;
+  display: flex;
+  justify-content: left;
+  align-items: left;
 }

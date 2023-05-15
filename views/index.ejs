@@ -2,8 +2,9 @@
 
 <%if (isAuthenticated) { %>
 
-<main class="content">
-  <div class="main__home">
+  <%- include("sidenav"); -%>
+  <main class="content">
+    <div class="main__home">
     <form action="" method="POST">
       <div>
         <label for="content"></label>
@@ -13,8 +14,6 @@
           name="content"
           placeholder="What's On Your Mind?"
           required
-          cols="30"
-          rows="10"
         ></textarea>
       </div>
       <div>
@@ -27,7 +26,11 @@
           hidden
         />
       </div>
-      <button type="submit">Post</button>
+      <div class="submit_area">
+        <p>Photo</p>
+        <p>Video</p>
+        <button type="submit">Post</button>
+      </div>
     </form>
     <% status_list.forEach(function(status) { %> <% const options = { month:
       'short', day: 'numeric' }; %> <% if (status.author !== user.username) { %>
