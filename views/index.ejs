@@ -29,10 +29,18 @@
       </div>
       <button type="submit">Post</button>
     </form>
-  <div class="content__status">
-    <p> <%= author %> </p>
-    <p> <%= recent_status[0].content %> </p>
-  </div>
+    <% status_list.forEach(function(status) { %> <% const options = { month:
+      'short', day: 'numeric' }; %> <% if (status.author !== user.username) { %>
+      <div class="status">
+        <p class="status__name">
+          <%= status.author %> <span>@<%= status.author %> </span> · <%=
+          status.createdAt.toLocaleDateString("en-US", options) %>
+        </p>
+        <p><%= status.content %></p>
+        <p><%= status.author %></p>
+        <button class="like-btn">♡</button>
+      </div>
+      <% } %> <% }); %>
 
   <% } else { %>
     <%- include("redirect"); -%>    

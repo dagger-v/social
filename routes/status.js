@@ -8,9 +8,9 @@ const Status = require("../models/Status");
 const asyncHandler = require("express-async-handler");
 const async = require("async");
 
-// Display list of all articles.
+// Display list of all status.
 router.get("/", function (req, res, next) {
-  Article.find({}, "content createdAt")
+  Status.find({}, "content createdAt")
     .sort({ title: 1 })
     .exec(function (err, list_status) {
       if (err) {

@@ -7,15 +7,14 @@ const { body, validationResult } = require("express-validator");
 
 const async = require("async");
 
-router.get("/", (req, res) => {
+router.get("/", function (req, res, next) {
   Status.find({}, "content author createdAt")
-    .sort({ createdAt: -1 })
-    .limit(1)
-    .exec(function (err, recent_status) {
+    .sort({ title: 1 })
+    .exec(function (err, list_status) {
       if (err) {
         return next(err);
       }
-      res.render("index", { author: req.user, recent_status: recent_status });
+      res.render("index", { status_list: list_status });
     });
 });
 

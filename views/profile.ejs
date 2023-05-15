@@ -16,7 +16,7 @@
   'short', day: 'numeric' }; %> <% if (status.author === id) { %>
   <div class="status">
     <p class="status__name">
-      <%= user %> <span>@<%= user %> </span> · <%=
+      <%= status.author %> <span>@<%= status.author %> </span> · <%=
       status.createdAt.toLocaleDateString("en-US", options) %>
     </p>
     <p><%= status.content %></p>
