@@ -6,13 +6,24 @@ a {
   color: #00b7ff;
 }
 
-.content {
-  box-sizing: border-box;
+.wrapper {
+  max-width: 1240px;
   margin: 0 auto;
-  max-width: 100%;
-  min-height: 100vh;
-  padding: 0 1rem;
-  width: 780px;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 10px;
+}
+
+.wrapper > * {
+  border-radius: 5px;
+  padding: 20px;
+  /* needed for the floated layout*/
+  margin-bottom: 10px;
+}
+
+.content {
+  float: right;
+  width: 79.7872%;
 }
 
 .banner {
@@ -42,6 +53,8 @@ a {
 }
 
 .navbar {
+  grid-column: 1/-1;
+  clear: both;
   display: flex;
   justify-content: space-between;
 }
@@ -129,11 +142,11 @@ a {
 }
 .main__home button {
   background-color: #008cba;
-  font-size: 16px;
   border: none;
   color: white;
   cursor: pointer;
   display: inline-block;
+  font-size: 16px;
   padding: 0 10px;
   text-align: center;
   text-decoration: none;
@@ -147,9 +160,10 @@ a {
 }
 
 .status {
-  border: 1px solid #f6f1f1;
+  border: 1px solid #d1d0d0;
   padding: 5px;
   margin-top: 5px;
+  width: 80%;
 }
 .status .status__name {
   color: #050505;
@@ -178,10 +192,23 @@ a {
 }
 
 .sidenav {
-  border: 1px solid black;
-  display: flex;
-  justify-content: left;
-  align-items: left;
+  border: 1px solid #d1d0d0;
+  float: left;
+  height: 15%;
+  width: 15%;
+}
+
+.footer {
+  grid-column: 1/-1;
+  clear: both;
+  border: 1px solid #d1d0d0;
+}
+
+@supports (display: grid) {
+  .wrapper > * {
+    width: auto;
+    margin: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

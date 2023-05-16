@@ -9,7 +9,7 @@ const async = require("async");
 
 router.get("/", function (req, res, next) {
   Status.find({}, "content author createdAt")
-    .sort({ title: 1 })
+    .sort({ createdAt: -1 })
     .exec(function (err, list_status) {
       if (err) {
         return next(err);
