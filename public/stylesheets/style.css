@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f5f3f3;
 }
 
 a {
@@ -7,7 +8,7 @@ a {
 }
 
 .wrapper {
-  max-width: 1240px;
+  max-width: 1040px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 5fr;
@@ -23,6 +24,7 @@ a {
 
 .content {
   float: right;
+  padding: 0 10px;
   width: 79.7872%;
 }
 
@@ -70,8 +72,7 @@ a {
   text-decoration: none;
 }
 
-.login__form,
-.register__form {
+.form {
   border: 1px solid black;
   box-sizing: border-box;
   margin: 0 auto;
@@ -80,18 +81,14 @@ a {
   padding: 0 1rem;
   width: 780px;
 }
-.login__form form,
-.register__form form {
+.form form {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
 }
-.login__form input[type=text],
-.login__form input[type=password],
-.login__form select,
-.register__form input[type=text],
-.register__form input[type=password],
-.register__form select {
+.form input[type=text],
+.form input[type=password],
+.form select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -100,10 +97,8 @@ a {
   border-radius: 4px;
   box-sizing: border-box;
 }
-.login__form input[type=submit],
-.login__form a,
-.register__form input[type=submit],
-.register__form a {
+.form input[type=submit],
+.form a {
   width: 100%;
   background-color: #00b7ff;
   color: white;
@@ -113,30 +108,27 @@ a {
   border-radius: 4px;
   cursor: pointer;
 }
-.login__form input[type=submit]:hover,
-.register__form input[type=submit]:hover {
+.form input[type=submit]:hover {
   background-color: #04acee;
 }
-.login__form .register__btn,
-.register__form .register__btn {
+.form .register__btn {
   background-color: #4caf50 !important;
 }
 
 .main__home form {
+  background-color: #fff;
+  border: 1px solid #d1d0d0;
   border-radius: 5px;
   padding: 20px;
-  min-width: 150px;
-  max-width: 600px;
-  width: 100%;
 }
 .main__home textarea {
   width: 100%;
-  height: 150px;
+  height: 50px;
   padding: 12px 20px;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
-  background-color: #f8f8f8;
+  background-color: #f1f1f1;
   font-size: 16px;
   resize: none;
 }
@@ -161,9 +153,9 @@ a {
 
 .status {
   border: 1px solid #d1d0d0;
+  background-color: #fff;
   padding: 5px;
-  margin-top: 5px;
-  width: 80%;
+  margin-top: 10px;
 }
 .status .status__name {
   color: #050505;
@@ -192,9 +184,10 @@ a {
 }
 
 .sidenav {
+  background-color: #fff;
   border: 1px solid #d1d0d0;
   float: left;
-  height: 15%;
+  height: 350px;
   width: 15%;
 }
 
