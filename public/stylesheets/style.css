@@ -8,11 +8,12 @@ a {
 }
 
 .wrapper {
-  max-width: 1040px;
   margin: 0 auto;
+  margin-top: 2em;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 1.5fr 1fr;
   grid-gap: 10px;
+  width: auto;
 }
 
 .wrapper > * {
@@ -23,7 +24,6 @@ a {
 }
 
 .content {
-  float: right;
   padding: 0 10px;
   width: 79.7872%;
 }
@@ -55,6 +55,9 @@ a {
 }
 
 .navbar {
+  background-color: #fff;
+  border: 1px solid #d4d4d4;
+  border-top: 1px solid #e57c23;
   grid-column: 1/-1;
   clear: both;
   display: flex;
@@ -156,6 +159,10 @@ a {
   background-color: #fff;
   padding: 5px;
   margin-top: 10px;
+  display: flex;
+}
+.status .status__container {
+  padding-left: 10px;
 }
 .status .status__name {
   color: #050505;
@@ -182,13 +189,54 @@ a {
 .status p {
   font-family: "Roboto", sans-serif;
 }
+.status img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: 12px;
+  object-fit: contain;
+}
+.status .status-img {
+  max-width: 100%;
+}
 
 .sidenav {
   background-color: #fff;
   border: 1px solid #d1d0d0;
-  float: left;
+  display: flex;
+  flex-direction: column;
   height: 350px;
-  width: 15%;
+  max-width: 225px;
+  align-items: center;
+}
+.sidenav .avatar img {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+.sidenav .full-name,
+.sidenav .job-title {
+  margin: 5px 0;
+  color: #050505;
+  font: 15px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+.sidenav .job-title {
+  font-weight: 500;
+}
+.sidenav .bottom-nav {
+  margin-top: 20px;
+  display: block;
+  padding: 0.4rem 1.2rem;
+}
+.sidenav .bottom-nav div {
+  margin: 8px 0;
+}
+.sidenav .bottom-nav .log-out {
+  margin-top: 50px;
 }
 
 .footer {

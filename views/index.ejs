@@ -1,7 +1,7 @@
 <%- include("header"); -%>
 
 <%if (isAuthenticated) { %>
-
+  
   <%- include("sidenav"); -%>
   <main class="content">
     <div class="main__home">
@@ -9,45 +9,49 @@
       <div>
         <label for="content"></label>
         <textarea
-          id="content"
-          type="text"
-          name="content"
-          placeholder="What's On Your Mind?"
-          required
+        id="content"
+        type="text"
+        name="content"
+        placeholder="What's On Your Mind?"
+        required
         ></textarea>
       </div>
       <div>
         <label for="author"></label>
         <input
-          id="author"
-          type="text"
-          name="author"
-          value="<%= user.username %>"
-          hidden
+        id="author"
+        type="text"
+        name="author"
+        value="<%= user.username %>"
+        hidden
         />
       </div>
       <div class="submit_area">
         <p>Photo</p>
-        <p>Video</p>
-        <button type="submit">Post</button>
-      </div>
-    </form>
-    <% status_list.forEach(function(status) { %> <% const options = { month:
-      'short', day: 'numeric' }; %> <% if (status.author !== user.username) { %>
+          <p>Video</p>
+          <button type="submit">Post</button>
+        </div>
+      </form>
+      <% status_list.forEach(function(status) { %> <% const options = { month:
+        'short', day: 'numeric' }; %> <% if (status.author !== user.username) { %>
       <div class="status">
-        <p class="status__name">
-          <%= status.author %> <span>@<%= status.author %> </span> · <%=
-          status.createdAt.toLocaleDateString("en-US", options) %>
-        </p>
-        <p><%= status.content %></p>
-        <p><%= status.author %></p>
+        <div class="status-img">
+          <img class="avatar" src="/images/viskljgd.jpg" alt="logo" />
+        </div>
+        <div class="status__container">
+          <p class="status__name">
+            <%= status.author %> <span>@<%= status.author %> </span> · <%=
+            status.createdAt.toLocaleDateString("en-US", options) %>
+          </p>
+          <p><%= status.content %></p>
         <button class="like-btn">♡</button>
       </div>
+      </div>
       <% } %> <% }); %>
-
-  <% } else { %>
-    <%- include("redirect"); -%>    
-  <% } %>
+      
+      <% } else { %>
+        <%- include("redirect"); -%>    
+        <% } %>
 </main>
 
 <%- include("footer"); -%>
