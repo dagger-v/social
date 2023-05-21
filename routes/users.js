@@ -3,7 +3,7 @@ var router = express.Router();
 
 const User = require("../models/User");
 const Status = require("../models/Status");
-const FriendRequest = require("../models/friendRequest");
+const FriendRequest = require("../models/FriendRequest");
 
 const passport = require("passport");
 
@@ -96,19 +96,38 @@ router.get("/logout", (req, res) => {
   });
 });
 
-router.get("/:user", function (req, res, next) {
+router.get("/:user", async function (req, res, next) {
   const user = req.user.username;
   const id = req.params.user;
+  const getId = req.user.id;
+  try {
+    const allUsers = await User.find({}, "username"); // Retrieve only the _id field for each user
+    const allIds = await User.find({}, "_id"); // Retrieve only the _id field for each user
+    const userNames = allUsers.map((user) => user._id);
+    const userIds = allIds.map((user) => user._id);
+    console.log(userNames, userIds);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while retrieving user IDs" });
+  }
   Status.find({}, "content author createdAt")
     .sort({ title: 1 })
     .exec(function (err, list_status) {
       if (err) {
         return next(err);
       }
-      res.render("profile", { status_list: list_status, user: user, id: id });
+      res.render("profile", {
+        status_list: list_status,
+        user: user,
+        id: id,
+        getId: getId,
+      });
     });
   console.log(user);
   console.log(id);
+  console.log(getId);
 });
 
 router.post("/:user", [
@@ -153,5 +172,32 @@ router.post("/:user", [
     });
   },
 ]);
+
+router.get("/users/:userId", (req, res) => {
+  const userId = user.id;
+  const userName = req.user.username;
+
+  // Fetch user details from the database
+  // Replace this with your logic to fetch the user details
+  const user = {
+    _id: userId,
+    name: userName,
+    // Add other user details as needed
+  };
+
+  // Check for pending friend requests
+  FriendRequest.find({ receiver: userId, status: "pending" })
+    .populate("sender") // Populate the sender field to get the sender details
+    .exec()
+    .then((friendRequests) => {
+      // Pass the user and friend request data to the user profile view
+      res.render("userProfile", { user, friendRequests });
+    })
+    .catch((error) => {
+      // Handle the error appropriately
+      res.status(500).send("Error fetching friend requests");
+    });
+  console.log(userId);
+});
 
 module.exports = router;

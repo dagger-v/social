@@ -135,23 +135,34 @@ a {
   font-size: 16px;
   resize: none;
 }
-.main__home button {
-  background-color: #008cba;
-  border: none;
-  color: white;
+.main__home .post-btn {
+  background-color: #4681f4;
+  border: 1px solid #d4d4d4;
+  border-radius: 100px;
+  color: #fff;
   cursor: pointer;
-  display: inline-block;
+  font-family: "Segoe UI";
   font-size: 16px;
-  padding: 0 10px;
-  text-align: center;
-  text-decoration: none;
+  font-weight: 600;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  padding: 0px 15px;
 }
 .main__home .submit_area {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 .main__home .submit_area p {
+  color: #69676d;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
   padding-right: 50px;
+}
+.main__home .submit_area div {
+  display: flex;
+  flex-direction: row;
 }
 
 .status {
@@ -203,9 +214,10 @@ a {
 .sidenav {
   background-color: #fff;
   border: 1px solid #d1d0d0;
+  border-radius: 3%;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 300px;
   max-width: 225px;
   align-items: center;
 }
@@ -234,6 +246,7 @@ a {
 }
 .sidenav .bottom-nav div {
   margin: 8px 0;
+  text-align: center;
 }
 .sidenav .bottom-nav .log-out {
   margin-top: 50px;

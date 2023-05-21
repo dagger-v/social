@@ -2,12 +2,16 @@
 <div class="content">
   <div class="banner"></div>
   <div class="follow">
-    <form action="/send-request" method="POST">
-      <button type="submit">Send request</button>
+    <form action="/friend-requests" method="POST">
+      <input type="hidden" name="sender" value="<%= user.id %>" />
+      <input type="hidden" name="receiver" value="<%= getId %>" />
+      <button type="submit">Send Friend Request</button>
     </form>
   </div>
   <div>
-    <h1><%= user.username %></h1>
+    <p>hi</p>
+    <p><%= user.username %></p>
+    <p><%= user.id %></p>
   </div>
 
   <% status_list.forEach(function(status) { %> <% const options = { month:

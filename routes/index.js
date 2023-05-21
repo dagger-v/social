@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 
 const Status = require("../models/Status");
+const User = require("../models/User");
+const FriendRequest = require("../models/FriendRequest");
 
 const { body, validationResult } = require("express-validator");
 
@@ -51,7 +53,7 @@ router.post("/", [
       return;
     }
 
-    // Data from form is valid. Save article.
+    // Data from form is valid. Save statue update.
     status.save((err) => {
       if (err) {
         return next(err);
@@ -60,5 +62,30 @@ router.post("/", [
     });
   },
 ]);
+
+// POST route to handle the friend request submission
+router.post("/friend-requests", (req, res) => {
+  const { sender, receiver } = req.body;
+
+  // Create a new FriendRequest instance
+  const newRequest = new FriendRequest({
+    sender,
+    receiver,
+  });
+
+  // Save the friend request to the database
+  newRequest
+    .save()
+    .then(() => {
+      // Redirect to a success page or send a response indicating success
+      res.send("Friend request sent successfully!");
+    })
+    .catch((error) => {
+      // Handle the error appropriately
+      res.status(500).send("Error sending friend request");
+    });
+  console.log(sender);
+  console.log(receiver);
+});
 
 module.exports = router;

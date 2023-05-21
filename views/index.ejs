@@ -27,10 +27,14 @@
         />
       </div>
       <div class="submit_area">
-        <p>Photo</p>
+        <div class="left">
+          <p>Photo</p>
           <p>Video</p>
-          <button type="submit">Post</button>
         </div>
+        <div class="right">
+          <button type="submit" class="post-btn">Post</button>
+        </div>
+      </div>
       </form>
       <% status_list.forEach(function(status) { %> <% const options = { month:
         'short', day: 'numeric' }; %> <% if (status.author !== user.username) { %>
