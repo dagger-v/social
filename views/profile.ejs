@@ -15,7 +15,7 @@
   </div>
 
   <% status_list.forEach(function(status) { %> <% const options = { month:
-  'short', day: 'numeric' }; %> <% if (status.author === id) { %>
+  'short', day: 'numeric' }; %> <% if (status.author === path) { %>
   <div class="status">
     <p class="status__name">
       <%= status.author %> <span>@<%= status.author %> </span> · <%=

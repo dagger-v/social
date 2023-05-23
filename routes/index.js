@@ -63,6 +63,19 @@ router.post("/", [
   },
 ]);
 
+router.get("/friend-requests", async (req, res) => {
+  try {
+    const friendRequests = await FriendRequest.find({})
+      .populate("sender")
+      .populate("receiver");
+
+    res.render("userProfile", { friendRequests });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 // POST route to handle the friend request submission
 router.post("/friend-requests", (req, res) => {
   const { sender, receiver } = req.body;

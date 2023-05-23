@@ -98,19 +98,21 @@ router.get("/logout", (req, res) => {
 
 router.get("/:user", async function (req, res, next) {
   const user = req.user.username;
-  const id = req.params.user;
-  const getId = req.user.id;
+  const path = req.params.user;
+  const getId = req.params._id;
   try {
-    const allUsers = await User.find({}, "username"); // Retrieve only the _id field for each user
-    const allIds = await User.find({}, "_id"); // Retrieve only the _id field for each user
-    const userNames = allUsers.map((user) => user._id);
-    const userIds = allIds.map((user) => user._id);
-    console.log(userNames, userIds);
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while retrieving user IDs" });
+    const formData = req.user;
+    const username = user.username;
+    const userID2 = await User.findOne({ usernameId: username }).exec();
+    if (user) {
+      console.log("output of findOne", userID2);
+      // your response logic
+    } else {
+      console.log("User does not existe");
+      // your response logic
+    }
+  } catch (err) {
+    console.log(err);
   }
   Status.find({}, "content author createdAt")
     .sort({ title: 1 })
@@ -121,13 +123,13 @@ router.get("/:user", async function (req, res, next) {
       res.render("profile", {
         status_list: list_status,
         user: user,
-        id: id,
+        path: path,
         getId: getId,
       });
     });
   console.log(user);
-  console.log(id);
-  console.log(getId);
+  console.log(path);
+  console.log(`ID: ${getId}`);
 });
 
 router.post("/:user", [

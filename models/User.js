@@ -22,8 +22,8 @@ const userSchema = new mongoose.Schema({
     index: true,
   },
   password: String,
-  email: String,
   createdAt: { type: Date, default: Date.now },
+  profilePictureURL: String,
   friends: [
     {
       type: mongoose.Schema.Types.ObjectId,
