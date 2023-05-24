@@ -77,7 +77,6 @@ router.get("/friend-requests", async (req, res) => {
 
 // POST route to handle the friend request submission
 router.post("/friend-requests", (req, res) => {
-  const path = req.params.user;
   const { sender, receiver } = req.body;
 
   // Create a new FriendRequest instance
@@ -99,6 +98,31 @@ router.post("/friend-requests", (req, res) => {
     });
   console.log(sender);
   console.log(receiver);
+});
+
+router.get("/requests", async (req, res) => {
+  const user = req.user; // Replace with your own authentication logic
+
+  const requests = await FriendRequest.find({
+    toUser: user._id,
+    status: "pending",
+  }).populate("sender");
+
+  res.render("requests", { requests });
+});
+
+router.post("/requests/:id/accept", async (req, res) => {
+  const request = await FriendRequest.findById(req.params.id);
+  request.status = "accepted";
+  await request.save();
+  res.redirect("/requests");
+});
+
+router.post("/requests/:id/reject", async (req, res) => {
+  const request = await FriendRequest.findById(req.params.id);
+  request.status = "rejected";
+  await request.save();
+  res.redirect("/requests");
 });
 
 module.exports = router;

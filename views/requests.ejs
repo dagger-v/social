@@ -1,21 +1,31 @@
-<ul>
-  <% requests.forEach(request => { %>
-  <li>
-    <%= request.fromUser.username %>
-    <form
-      action="/requests/<%= request._id %>/accept"
-      method="POST"
-      style="display: inline"
-    >
-      <button type="submit">Accept</button>
-    </form>
-    <form
-      action="/requests/<%= request._id %>/reject"
-      method="POST"
-      style="display: inline"
-    >
-      <button type="submit">Reject</button>
-    </form>
-  </li>
-  <% }); %>
-</ul>
+<%- include("header"); -%> <%if (isAuthenticated) { %> <%- include("sidenav");
+-%>
+<main class="content">
+  <h1>Friend Requests</h1>
+
+  <ul>
+    <% requests.forEach(request => { %>
+    <li>
+      <%= request.sender.username %>
+      <form
+        action="/requests/<%= request._id %>/accept"
+        method="POST"
+        style="display: inline"
+      >
+        <button type="submit">Accept</button>
+      </form>
+      <form
+        action="/requests/<%= request._id %>/reject"
+        method="POST"
+        style="display: inline"
+      >
+        <button type="submit">Reject</button>
+      </form>
+    </li>
+    <% }) %>
+  </ul>
+
+  <% } else { %> <%- include("redirect"); -%> <% } %>
+</main>
+
+<%- include("footer"); -%>
