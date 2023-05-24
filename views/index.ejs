@@ -44,7 +44,7 @@
         </div>
         <div class="status__container">
           <p class="status__name">
-            <%= status.author %> <span>@<%= status.author %> </span> · <%=
+            <a href="/users/<%= status.author %>"><%= status.author %></a> <span>@<%= status.author %> </span> · <%=
             status.createdAt.toLocaleDateString("en-US", options) %>
           </p>
           <p><%= status.content %></p>

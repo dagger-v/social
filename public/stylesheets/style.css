@@ -176,10 +176,13 @@ a {
   padding-left: 10px;
 }
 .status .status__name {
-  color: #050505;
   font: 15px;
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
+}
+.status .status__name a {
+  text-decoration: none;
+  color: #050505;
 }
 .status span {
   color: #69676d;

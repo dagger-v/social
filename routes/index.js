@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 
 const Status = require("../models/Status");
-const User = require("../models/User");
 const FriendRequest = require("../models/FriendRequest");
 
 const { body, validationResult } = require("express-validator");
@@ -78,6 +77,7 @@ router.get("/friend-requests", async (req, res) => {
 
 // POST route to handle the friend request submission
 router.post("/friend-requests", (req, res) => {
+  const path = req.params.user;
   const { sender, receiver } = req.body;
 
   // Create a new FriendRequest instance
@@ -91,7 +91,7 @@ router.post("/friend-requests", (req, res) => {
     .save()
     .then(() => {
       // Redirect to a success page or send a response indicating success
-      res.send("Friend request sent successfully!");
+      res.status(204).send();
     })
     .catch((error) => {
       // Handle the error appropriately

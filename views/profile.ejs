@@ -3,8 +3,8 @@
   <div class="banner"></div>
   <div class="follow">
     <form action="/friend-requests" method="POST">
-      <input type="hidden" name="sender" value="<%= user.id %>" />
-      <input type="hidden" name="receiver" value="<%= getId %>" />
+      <input type="hidden" name="sender" value="<%= id %>" />
+      <input type="hidden" name="receiver" value="<%= receiverUserId %>" />
       <button type="submit">Send Friend Request</button>
     </form>
   </div>

@@ -98,22 +98,11 @@ router.get("/logout", (req, res) => {
 
 router.get("/:user", async function (req, res, next) {
   const user = req.user.username;
+  const id = req.user.id;
   const path = req.params.user;
-  const getId = req.params._id;
-  try {
-    const formData = req.user;
-    const username = user.username;
-    const userID2 = await User.findOne({ usernameId: username }).exec();
-    if (user) {
-      console.log("output of findOne", userID2);
-      // your response logic
-    } else {
-      console.log("User does not existe");
-      // your response logic
-    }
-  } catch (err) {
-    console.log(err);
-  }
+  const receiverUsername = req.params.user;
+  const receiverUser = await User.findOne({ username: receiverUsername });
+  const receiverUserId = receiverUser._id;
   Status.find({}, "content author createdAt")
     .sort({ title: 1 })
     .exec(function (err, list_status) {
@@ -123,13 +112,15 @@ router.get("/:user", async function (req, res, next) {
       res.render("profile", {
         status_list: list_status,
         user: user,
+        id: id,
         path: path,
-        getId: getId,
+        receiverUserId: receiverUserId,
       });
     });
   console.log(user);
   console.log(path);
-  console.log(`ID: ${getId}`);
+  console.log(`my ID ${id}`);
+  console.log(receiverUserId);
 });
 
 router.post("/:user", [
@@ -174,32 +165,5 @@ router.post("/:user", [
     });
   },
 ]);
-
-router.get("/users/:userId", (req, res) => {
-  const userId = user.id;
-  const userName = req.user.username;
-
-  // Fetch user details from the database
-  // Replace this with your logic to fetch the user details
-  const user = {
-    _id: userId,
-    name: userName,
-    // Add other user details as needed
-  };
-
-  // Check for pending friend requests
-  FriendRequest.find({ receiver: userId, status: "pending" })
-    .populate("sender") // Populate the sender field to get the sender details
-    .exec()
-    .then((friendRequests) => {
-      // Pass the user and friend request data to the user profile view
-      res.render("userProfile", { user, friendRequests });
-    })
-    .catch((error) => {
-      // Handle the error appropriately
-      res.status(500).send("Error fetching friend requests");
-    });
-  console.log(userId);
-});
 
 module.exports = router;
