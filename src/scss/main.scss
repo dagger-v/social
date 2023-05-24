@@ -62,17 +62,81 @@ a {
   clear: both;
   display: flex;
   justify-content: space-between;
-  ul {
-    display: flex;
-    padding: 0;
-  }
-  li {
-    margin: 0 1em;
-    list-style-type: none;
-  }
-  a {
-    text-decoration: none;
-  }
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.navbar ul li {
+  float: left;
+  position: relative;
+  margin: 0 20px 0 0;
+}
+
+li > a:after {
+  content: " »";
+}
+
+li > a:only-child:after {
+  content: "";
+}
+
+.navbar ul li a {
+  padding: 20px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.navbar ul li a:hover {
+  opacity: 0.5;
+}
+
+.navbar ul li ul {
+  display: none;
+  position: absolute;
+  left: 0;
+}
+
+.navbar ul li ul li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.navbar ul li:hover ul {
+  display: block;
+}
+
+li:focus-within a {
+  outline: none;
+}
+
+ul li ul {
+  background: white;
+  border: 1px solid #d1d0d0;
+  visibility: hidden;
+  opacity: 0;
+  width: 121%;
+  position: absolute;
+  transition: all 0.5s ease;
+  margin-top: 1rem;
+  left: 0;
+  display: none;
+}
+
+ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover,
+ul li ul:focus {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+ul li ul li {
+  clear: both;
+  width: 100%;
 }
 
 .form {
@@ -92,6 +156,7 @@ a {
 
   input[type="text"],
   input[type="password"],
+  input[type="email"],
   select {
     width: 100%;
     padding: 12px 20px;
