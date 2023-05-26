@@ -1,28 +1,35 @@
 <%- include("header"); -%> <%if (isAuthenticated) { %> <%- include("sidenav");
 -%>
 <main class="content">
-  <h1>Friend Requests</h1>
-
   <ul>
-    <% requests.forEach(request => { %>
-    <li>
-      <%= request.sender.username %>
-      <form
-        action="/requests/<%= request._id %>/accept"
-        method="POST"
-        style="display: inline"
-      >
-        <button type="submit">Accept</button>
-      </form>
-      <form
-        action="/requests/<%= request._id %>/reject"
-        method="POST"
-        style="display: inline"
-      >
-        <button type="submit">Reject</button>
-      </form>
-    </li>
-    <% }) %>
+    <h1>Friend Requests</h1>
+    <% requests.forEach(request => { %> <% if (request.receiver.username ===
+    user.username) { %>
+    <div class="requests status">
+      <div>
+        <img class="avatar" src="/images/viskljgd.jpg" alt="logo" />
+      </div>
+      <div class="container">
+        <li>
+          <p><%= request.sender.username %> wants to be your friend!</p>
+          <form
+            action="/requests/<%= request._id %>/accept"
+            method="POST"
+            style="display: inline"
+          >
+            <button type="submit" class="accept">Accept</button>
+          </form>
+          <form
+            action="/requests/<%= request._id %>/reject"
+            method="POST"
+            style="display: inline"
+          >
+            <button type="submit" class="reject">Reject</button>
+          </form>
+        </li>
+      </div>
+    </div>
+    <% } %> <% }) %>
   </ul>
 
   <% } else { %> <%- include("redirect"); -%> <% } %>

@@ -101,14 +101,17 @@ router.post("/friend-requests", (req, res) => {
 });
 
 router.get("/requests", async (req, res) => {
-  const user = req.user; // Replace with your own authentication logic
+  const user = req.user;
+  const id = req.user.id;
 
   const requests = await FriendRequest.find({
     toUser: user._id,
     status: "pending",
-  }).populate("sender");
+  })
+    .populate("sender")
+    .populate("receiver");
 
-  res.render("requests", { requests });
+  res.render("requests", { requests, id });
 });
 
 router.post("/requests/:id/accept", async (req, res) => {
