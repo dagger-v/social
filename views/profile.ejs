@@ -8,6 +8,9 @@
       <button type="submit">Send Friend Request</button>
     </form>
   </div>
+  <div class="friends">
+    <a href="/<%= user %>/friends">See all friends</a>
+  </div>
   <% status_list.forEach(function(status) { %> <% const options = { month:
   'short', day: 'numeric' }; %> <% if (status.author === path) { %>
   <div class="status">

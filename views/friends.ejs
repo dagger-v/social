@@ -1,0 +1,6 @@
+<%- include("header"); -%> <%if (isAuthenticated) { %> <%- include("sidenav");
+-%>
+<main class="content">
+  <h1>Friends</h1>
+</main>
+<% } else { %> <%- include("redirect"); -%> <% } %> <%- include("footer"); -%>

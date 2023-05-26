@@ -128,4 +128,9 @@ router.post("/requests/:id/reject", async (req, res) => {
   res.redirect("/requests");
 });
 
+router.get("/:user/friends", function (req, res) {
+  const user = req.user.username;
+  res.render("friends", { user: user });
+});
+
 module.exports = router;
