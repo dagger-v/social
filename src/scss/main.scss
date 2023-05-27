@@ -349,8 +349,12 @@ ul li ul li {
 .footer {
   grid-column: 1 / -1;
   clear: both;
-  display: flex;
-  flex-direction: column;
+  p {
+    padding-left: 10px;
+  }
+  .about {
+    display: flex;
+  }
 }
 
 @supports (display: grid) {

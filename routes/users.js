@@ -3,7 +3,6 @@ var router = express.Router();
 
 const User = require("../models/User");
 const Status = require("../models/Status");
-const FriendRequest = require("../models/FriendRequest");
 
 const passport = require("passport");
 

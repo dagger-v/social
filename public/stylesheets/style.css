@@ -344,8 +344,12 @@ ul li ul li {
 .footer {
   grid-column: 1/-1;
   clear: both;
+}
+.footer p {
+  padding-left: 10px;
+}
+.footer .about {
   display: flex;
-  flex-direction: column;
 }
 
 @supports (display: grid) {

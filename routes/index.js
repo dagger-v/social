@@ -3,6 +3,7 @@ var router = express.Router();
 
 const Status = require("../models/Status");
 const FriendRequest = require("../models/FriendRequest");
+const User = require("../models/User");
 
 const { body, validationResult } = require("express-validator");
 
@@ -62,44 +63,7 @@ router.post("/", [
   },
 ]);
 
-router.get("/friend-requests", async (req, res) => {
-  try {
-    const friendRequests = await FriendRequest.find({})
-      .populate("sender")
-      .populate("receiver");
-
-    res.render("userProfile", { friendRequests });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-// POST route to handle the friend request submission
-router.post("/friend-requests", (req, res) => {
-  const { sender, receiver } = req.body;
-
-  // Create a new FriendRequest instance
-  const newRequest = new FriendRequest({
-    sender,
-    receiver,
-  });
-
-  // Save the friend request to the database
-  newRequest
-    .save()
-    .then(() => {
-      // Redirect to a success page or send a response indicating success
-      res.status(204).send();
-    })
-    .catch((error) => {
-      // Handle the error appropriately
-      res.status(500).send("Error sending friend request");
-    });
-  console.log(sender);
-  console.log(receiver);
-});
-
+// GET route for friend requests
 router.get("/requests", async (req, res) => {
   const user = req.user;
   const id = req.user.id;
@@ -114,10 +78,36 @@ router.get("/requests", async (req, res) => {
   res.render("requests", { requests, id });
 });
 
+// POST route to handle the friend request submission
+router.post("/requests", (req, res) => {
+  const { receiver } = req.body;
+
+  FriendRequest.create({
+    sender: req.user.id,
+    receiver,
+  })
+    .then(() => {
+      // Redirect to a success page or send a response indicating success
+      res.status(204).send();
+    })
+    .catch((error) => {
+      // Handle the error appropriately
+      res.status(500).send("Error sending friend request");
+    });
+});
+
 router.post("/requests/:id/accept", async (req, res) => {
   const request = await FriendRequest.findById(req.params.id);
   request.status = "accepted";
   await request.save();
+  FriendRequest.find({ sender: req.user.id, status: "accepted" })
+    .then((listOfFriends) => {
+      console.log(listOfFriends);
+    })
+    .catch((e) => {
+      // handle error
+      res.status(500).send("Error accepting friend request");
+    });
   res.redirect("/requests");
 });
 
