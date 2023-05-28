@@ -2,5 +2,8 @@
 -%>
 <main class="content">
   <h1>Friends</h1>
+  <%= friends %> <% friends.forEach(friend => { %>
+  <p><%= friend.receiver.username %></p>
+  <% }) %>
 </main>
 <% } else { %> <%- include("redirect"); -%> <% } %> <%- include("footer"); -%>

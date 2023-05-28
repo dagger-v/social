@@ -100,14 +100,6 @@ router.post("/requests/:id/accept", async (req, res) => {
   const request = await FriendRequest.findById(req.params.id);
   request.status = "accepted";
   await request.save();
-  FriendRequest.find({ sender: req.user.id, status: "accepted" })
-    .then((listOfFriends) => {
-      console.log(listOfFriends);
-    })
-    .catch((e) => {
-      // handle error
-      res.status(500).send("Error accepting friend request");
-    });
   res.redirect("/requests");
 });
 
@@ -118,9 +110,19 @@ router.post("/requests/:id/reject", async (req, res) => {
   res.redirect("/requests");
 });
 
-router.get("/:user/friends", function (req, res) {
+router.get("/:user/friends", async function (req, res) {
   const user = req.user.username;
-  res.render("friends", { user: user });
+
+  const friends = await FriendRequest.find({
+    sender: req.user.id,
+    status: "accepted",
+  })
+    .populate("sender")
+    .populate("receiver")
+    .exec(); // Add .exec() to execute the query immediately
+
+  console.log(`list of friends: ${friends}`);
+  res.render("friends", { user, friends });
 });
 
 module.exports = router;
