@@ -115,6 +115,7 @@ router.get("/:user/friends", async function (req, res) {
 
   const friends = await FriendRequest.find({
     sender: req.user.id,
+    receiver: req.user.id,
     status: "accepted",
   })
     .populate("sender")
