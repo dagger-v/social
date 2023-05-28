@@ -119,7 +119,7 @@ router.get("/:user/friends", async function (req, res) {
   })
     .populate("sender")
     .populate("receiver")
-    .exec(); // Add .exec() to execute the query immediately
+    .exec();
 
   console.log(`list of friends: ${friends}`);
   res.render("friends", { user, friends });
