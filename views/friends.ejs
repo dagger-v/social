@@ -2,8 +2,25 @@
 -%>
 <main class="content">
   <h1>Friends</h1>
-  <%= friends %> <% friends.forEach(friend => { %>
-  <p><%= friend.receiver.username %></p>
-  <% }) %>
+  <%= friends.username %> <% friends.forEach(friend => { %> <% if
+  (friend.sender.username !== user) { %>
+  <div class="status">
+    <div class="status-img">
+      <img class="avatar" src="/images/viskljgd.jpg" alt="logo" />
+    </div>
+    <div class="container">
+      <p class="status__name"><%= friend.sender.username %></p>
+    </div>
+  </div>
+  <% } %> <% if (friend.receiver.username !== user) { %>
+  <div class="status">
+    <div class="status-img">
+      <img class="avatar" src="/images/viskljgd.jpg" alt="logo" />
+    </div>
+    <div class="container">
+      <p class="status__name"><%= friend.receiver.username %></p>
+    </div>
+  </div>
+  <% } %> <% }) %>
 </main>
 <% } else { %> <%- include("redirect"); -%> <% } %> <%- include("footer"); -%>
