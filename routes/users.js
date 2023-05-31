@@ -1,10 +1,12 @@
 var express = require("express");
+const multer = require("multer");
 var router = express.Router();
 
 const User = require("../models/User");
 const Status = require("../models/Status");
 
 const passport = require("passport");
+const upload = multer({ dest: "./public/images/uploads/" });
 
 const { body, validationResult } = require("express-validator");
 
@@ -164,5 +166,36 @@ router.post("/:user", [
     });
   },
 ]);
+
+router.get("/:user/profile-picture", (req, res) => {
+  const user = req.user.username;
+  const id = req.user.id;
+  res.render("picture", { user, id });
+});
+
+router.post(
+  "/:user/profile-picture",
+  upload.single("profilePicture"),
+  async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const { path } = req.file; // Get the path of the uploaded file
+      console.log(`userID: ${userId}`);
+      console.log(`path: ${path}`);
+
+      const user = await User.findById(userId);
+      user.profilePicture = path; // Store the path in the User schema
+      await user.save();
+
+      res
+        .status(200)
+        .json({ message: "Profile picture uploaded successfully" });
+    } catch (error) {
+      res.status(500).json({
+        error: "An error occurred while uploading the profile picture",
+      });
+    }
+  }
+);
 
 module.exports = router;

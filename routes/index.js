@@ -10,13 +10,14 @@ const { body, validationResult } = require("express-validator");
 const async = require("async");
 
 router.get("/", function (req, res, next) {
+  const id = req.user.id;
   Status.find({}, "content author createdAt")
     .sort({ createdAt: -1 })
     .exec(function (err, list_status) {
       if (err) {
         return next(err);
       }
-      res.render("index", { status_list: list_status });
+      res.render("index", { status_list: list_status, id: id });
     });
 });
 

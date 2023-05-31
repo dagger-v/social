@@ -1,0 +1,13 @@
+<%- include("header"); -%> <%if (isAuthenticated) { %> <%- include("sidenav");
+-%>
+<main class="picture">
+  <form
+    action="/users/<%= user %>/profile-picture"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <input type="file" name="profilePicture" />
+    <input type="submit" value="Submit" />
+  </form>
+</main>
+<% } else { %> <%- include("redirect"); -%> <% } %> <%- include("footer"); -%>
