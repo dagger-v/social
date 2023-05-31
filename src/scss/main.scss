@@ -260,15 +260,20 @@ ul li ul li {
   .like-btn {
     text-align: left;
     border: none;
-    background-color: #fff;
-    color: #000;
-    cursor: pointer;
-    font-size: 24px;
     padding: 0;
+    display: flex;
+    justify-content: space-between;
     width: auto;
-  }
-  .like-btn:hover {
-    color: #ef0107;
+    span {
+      cursor: pointer;
+      margin: 0;
+      font-size: 16px;
+      width: auto;
+      padding: 5px 0;
+    }
+    span:hover {
+      color: #00b7ff;
+    }
   }
   p {
     font-family: "Roboto", sans-serif;
@@ -343,6 +348,38 @@ ul li ul li {
   }
   .accept {
     background-color: #4681f4;
+  }
+}
+
+.friends__content {
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  .friends {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d1d0d0;
+    background-color: #fff;
+    padding: 5px;
+    width: 80%;
+    .friends__name {
+      font: 15px;
+      font-weight: 600;
+      font-family: "Montserrat", sans-serif;
+      a {
+        color: #050505;
+        padding-left: 10px;
+        text-decoration: none;
+      }
+    }
+    img {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin-top: 12px;
+      object-fit: contain;
+    }
   }
 }
 

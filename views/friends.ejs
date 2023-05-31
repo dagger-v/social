@@ -1,24 +1,31 @@
 <%- include("header"); -%> <%if (isAuthenticated) { %> <%- include("sidenav");
 -%>
-<main class="content">
-  <h1>Friends</h1>
+<main class="friends__content">
   <%= friends.username %> <% friends.forEach(friend => { %> <% if
   (friend.sender.username !== user) { %>
-  <div class="status">
-    <div class="status-img">
+  <div class="friends">
+    <div class="friends-img">
       <img class="avatar" src="/images/viskljgd.jpg" alt="logo" />
     </div>
     <div class="container">
-      <p class="status__name"><%= friend.sender.username %></p>
+      <p class="friends__name">
+        <a href="/users/<%= friend.sender.username %>"
+          ><%= friend.sender.username %></a
+        >
+      </p>
     </div>
   </div>
   <% } %> <% if (friend.receiver.username !== user) { %>
-  <div class="status">
-    <div class="status-img">
+  <div class="friends">
+    <div class="friends-img">
       <img class="avatar" src="/images/viskljgd.jpg" alt="logo" />
     </div>
     <div class="container">
-      <p class="status__name"><%= friend.receiver.username %></p>
+      <p class="friends__name">
+        <a href="/users/<%= friend.receiver.username %>"
+          ><%= friend.receiver.username %></a
+        >
+      </p>
     </div>
   </div>
   <% } %> <% }) %>
