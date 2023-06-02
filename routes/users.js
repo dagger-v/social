@@ -6,7 +6,6 @@ const User = require("../models/User");
 const Status = require("../models/Status");
 
 const passport = require("passport");
-const upload = multer({ dest: "./public/images/uploads/" });
 
 const { body, validationResult } = require("express-validator");
 
@@ -26,6 +25,32 @@ passport.deserializeUser(function (user, cb) {
   process.nextTick(function () {
     return cb(null, user);
   });
+});
+
+//Configuration for Multer
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images/uploads");
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split("/")[1];
+    const user = req.user.username;
+    cb(null, `${file.fieldname}-${user}.${ext}`);
+  },
+});
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.split("/")[1] === "png") {
+    cb(null, true);
+  } else {
+    cb(new Error("Not a .PNG File!!"), false);
+  }
+};
+
+//Calling the "multer" Function
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
 });
 
 /* GET users listing. */

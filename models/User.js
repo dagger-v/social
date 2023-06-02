@@ -22,7 +22,10 @@ const userSchema = new mongoose.Schema({
   },
   password: String,
   createdAt: { type: Date, default: Date.now },
-  profilePicture: String,
+  profilePicture: {
+    type: String,
+    default: "public/images/uploads/default.png",
+  },
   friends: [
     {
       type: mongoose.Schema.Types.ObjectId,

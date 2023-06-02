@@ -11,13 +11,14 @@ const async = require("async");
 
 router.get("/", function (req, res, next) {
   const id = req.user.id;
+  const user = req.user.username;
   Status.find({}, "content author createdAt")
     .sort({ createdAt: -1 })
     .exec(function (err, list_status) {
       if (err) {
         return next(err);
       }
-      res.render("index", { status_list: list_status, id: id });
+      res.render("index", { status_list: list_status, id: id, user });
     });
 });
 
@@ -66,17 +67,19 @@ router.post("/", [
 
 // GET route for friend requests
 router.get("/requests", async (req, res) => {
-  const user = req.user;
+  const toUser = req.user;
+  const user = req.user.username;
   const id = req.user.id;
+  console.log(user);
 
   const requests = await FriendRequest.find({
-    toUser: user._id,
+    toUser: toUser._id,
     status: "pending",
   })
     .populate("sender")
     .populate("receiver");
 
-  res.render("requests", { requests, id });
+  res.render("requests", { requests, id, toUser, user });
 });
 
 // POST route to handle the friend request submission
