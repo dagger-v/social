@@ -170,7 +170,19 @@ router.post("/:user", [
 router.get("/:user/profile-picture", (req, res) => {
   const user = req.user.username;
   const id = req.user.id;
-  res.render("picture", { user, id });
+  const picture = req.user.profilePicture;
+  User.findOne({ username: user }, "profilePicture").exec(function (
+    err,
+    profilePicture
+  ) {
+    if (err) {
+      return next(err);
+    }
+    res.render("picture", { user, id, picture, profilePicture });
+  });
+  console.log(user);
+  console.log(id);
+  console.log(picture);
 });
 
 router.post(
@@ -179,7 +191,7 @@ router.post(
   async (req, res) => {
     try {
       const userId = req.user.id;
-      const { path } = req.file; // Get the path of the uploaded file
+      const path = req.file.path; // Get the path of the uploaded file
       console.log(`userID: ${userId}`);
       console.log(`path: ${path}`);
 
