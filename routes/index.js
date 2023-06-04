@@ -8,6 +8,7 @@ const User = require("../models/User");
 const { body, validationResult } = require("express-validator");
 
 const async = require("async");
+const he = require("he");
 
 router.get("/", function (req, res, next) {
   const id = req.user.id;
@@ -33,9 +34,15 @@ router.post("/", [
     // Extract the validation errors from a request.
     const errors = validationResult(req);
 
+    // Access the text content from the form
+    const text = req.body.content;
+
+    // Decode the text content using he library
+    const decodedText = he.decode(text);
+
     // Create an article object with escaped and trimmed data.
     const status = new Status({
-      content: req.body.content,
+      content: decodedText,
       author: req.body.author,
     });
 

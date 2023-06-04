@@ -35,6 +35,7 @@ a {
   margin-top: 10px;
 }
 
+// FRIEND REQUEST BUTTON
 .follow {
   text-align: right;
   margin-top: 5px;
@@ -98,18 +99,6 @@ li > a:only-child:after {
   display: none;
   position: absolute;
   left: 0;
-}
-
-.navbar ul li ul li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.navbar ul li:hover ul {
-  display: block;
-}
-
-li:focus-within a {
-  outline: none;
 }
 
 ul li ul {
@@ -257,6 +246,10 @@ ul li ul li {
   span {
     color: #69676d;
   }
+  .status-img {
+    width: 50px;
+    height: 50px;
+  }
   .like-btn {
     text-align: left;
     border: none;
@@ -283,9 +276,6 @@ ul li ul li {
     height: 50px;
     margin-top: 12px;
     object-fit: contain;
-  }
-  .status-img {
-    max-width: 100%;
   }
 }
 

@@ -101,18 +101,6 @@ li > a:only-child:after {
   left: 0;
 }
 
-.navbar ul li ul li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.navbar ul li:hover ul {
-  display: block;
-}
-
-li:focus-within a {
-  outline: none;
-}
-
 ul li ul {
   background: white;
   border: 1px solid #d1d0d0;
@@ -253,6 +241,10 @@ ul li ul li {
 .status span {
   color: #69676d;
 }
+.status .status-img {
+  width: 50px;
+  height: 50px;
+}
 .status .like-btn {
   text-align: left;
   border: none;
@@ -279,9 +271,6 @@ ul li ul li {
   height: 50px;
   margin-top: 12px;
   object-fit: contain;
-}
-.status .status-img {
-  max-width: 100%;
 }
 
 .sidenav {

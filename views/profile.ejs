@@ -14,7 +14,11 @@
   'short', day: 'numeric' }; %> <% if (status.author === path) { %>
   <div class="status">
     <div class="status-img">
-      <img class="avatar" src="public/images/uploads/<% id %>" alt="logo" />
+      <img
+        class="avatar"
+        src="/images/uploads/profilePicture-<%= status.author %>.png"
+        alt="logo"
+      />
     </div>
     <div class="container">
       <p class="status__name">
@@ -24,7 +28,7 @@
       </p>
       <p><%= status.content %></p>
       <div class="like-btn">
-        <span>Like</span>
+        <span id="likeButton">Like</span>
         <span>Comment</span>
       </div>
     </div>

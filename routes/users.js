@@ -130,7 +130,7 @@ router.get("/:user", async function (req, res, next) {
   const receiverUser = await User.findOne({ username: receiverUsername });
   const receiverUserId = receiverUser._id;
   Status.find({}, "content author createdAt")
-    .sort({ title: 1 })
+    .sort({ createdAt: -1 })
     .exec(function (err, list_status) {
       if (err) {
         return next(err);

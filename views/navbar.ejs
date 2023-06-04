@@ -14,15 +14,13 @@
     </li>
     <% } else { %>
     <li>
-      <a href="/users/<%- user.username %>">Name</a>
+      <a href="/users/<%= user %>">Name</a>
       <ul>
         <li>
           <a href="/requests">Friend Requests</a>
         </li>
         <li>
-          <a href="/users/<%- user.username %>/profile-picture"
-            >Profile Picture</a
-          >
+          <a href="/users/<%= user %>/profile-picture">Profile Picture</a>
         </li>
         <li>
           <a href="/users/logout">Logout</a>
