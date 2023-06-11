@@ -3,7 +3,6 @@ var router = express.Router();
 
 const Status = require("../models/Status");
 const FriendRequest = require("../models/FriendRequest");
-const User = require("../models/User");
 
 const { body, validationResult } = require("express-validator");
 
@@ -11,6 +10,10 @@ const async = require("async");
 const he = require("he");
 
 router.get("/", function (req, res, next) {
+  res.render("index");
+});
+
+router.get("/home", function (req, res, next) {
   const id = req.user.id;
   const user = req.user.username;
   Status.find({}, "content author createdAt")
@@ -19,11 +22,11 @@ router.get("/", function (req, res, next) {
       if (err) {
         return next(err);
       }
-      res.render("index", { status_list: list_status, id: id, user });
+      res.render("home", { status_list: list_status, id: id, user });
     });
 });
 
-router.post("/", [
+router.post("/home", [
   // Validate and sanitize fields.
   body("content", "Content must not be empty.")
     .trim()
@@ -67,7 +70,7 @@ router.post("/", [
       if (err) {
         return next(err);
       }
-      res.redirect("/");
+      res.redirect("/home");
     });
   },
 ]);

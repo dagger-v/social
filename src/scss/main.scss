@@ -19,7 +19,6 @@ a {
 .wrapper > * {
   border-radius: 5px;
   padding: 20px;
-  /* needed for the floated layout*/
   margin-bottom: 10px;
 }
 
@@ -136,13 +135,11 @@ ul li ul li {
   min-height: 100vh;
   padding: 0 1rem;
   width: 780px;
-
   form {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
   }
-
   input[type="text"],
   input[type="password"],
   input[type="email"],
@@ -233,6 +230,7 @@ ul li ul li {
   display: flex;
   .container {
     padding-left: 10px;
+    padding-bottom: 10px;
   }
   .status__name {
     font: 15px;

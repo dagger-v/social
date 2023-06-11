@@ -12,6 +12,7 @@ const passport = require("passport");
 require("dotenv").config();
 
 const indexRouter = require("./routes/index");
+const authRouter = require("./routes/auth");
 const usersRouter = require("./routes/users");
 const statusRouter = require("./routes/status");
 
@@ -60,6 +61,7 @@ async function main() {
 }
 
 app.use("/", indexRouter);
+app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 app.use("/status", statusRouter);
 

@@ -20,7 +20,6 @@ a {
 .wrapper > * {
   border-radius: 5px;
   padding: 20px;
-  /* needed for the floated layout*/
   margin-bottom: 10px;
 }
 
@@ -228,6 +227,7 @@ ul li ul li {
 }
 .status .container {
   padding-left: 10px;
+  padding-bottom: 10px;
 }
 .status .status__name {
   font: 15px;

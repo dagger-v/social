@@ -1,0 +1,59 @@
+<%- include("header"); -%> <%if (isAuthenticated) { %> <%- include("sidenav");
+-%>
+<main class="content">
+  <div class="main__home">
+    <form action="" method="POST">
+      <div>
+        <label for="content"></label>
+        <textarea
+          id="content"
+          type="text"
+          name="content"
+          placeholder="What's On Your Mind?"
+          required
+        ></textarea>
+      </div>
+      <div>
+        <label for="author"></label>
+        <input
+          id="author"
+          type="text"
+          name="author"
+          value="<%= user %>"
+          hidden
+        />
+      </div>
+      <div class="submit_area">
+        <div class="left">
+          <p>Photo</p>
+          <p>Video</p>
+        </div>
+        <div class="right">
+          <button type="submit" class="post-btn">Post</button>
+        </div>
+      </div>
+    </form>
+    <% status_list.forEach(function(status) { %> <% const options = { month:
+    'short', day: 'numeric' }; %> <% if (status.author !== user) { %>
+    <div class="status">
+      <div class="status-img">
+        <img
+          class="avatar"
+          src="/images/uploads/profilePicture-<%= status.author %>.png"
+          alt="logo"
+        />
+      </div>
+      <div class="container">
+        <p class="status__name">
+          <a href="/users/<%= status.author %>"><%= status.author %></a>
+          <span>@<%= status.author %> </span> · <%=
+          status.createdAt.toLocaleDateString("en-US", options) %>
+        </p>
+        <p><%= status.content %></p>
+      </div>
+    </div>
+    <% } %> <% }); %> <% } else { %> <%- include("redirectToLogin"); -%> <% } %>
+  </div>
+</main>
+
+<%- include("footer"); -%>

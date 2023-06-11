@@ -1,16 +1,16 @@
 <nav class="navbar">
   <ul class="navbar__left">
     <li>
-      <a href="/">Home</a>
+      <a href="/home">Home</a>
     </li>
   </ul>
   <ul class="navbar__right">
     <% if (!isAuthenticated) { %>
     <li>
-      <a href="/users/register">Register</a>
+      <a href="/auth/register">Register</a>
     </li>
     <li>
-      <a href="/users/login">Login</a>
+      <a href="/auth/login">Login</a>
     </li>
     <% } else { %>
     <li>
@@ -23,7 +23,7 @@
           <a href="/users/<%= user %>/profile-picture">Profile Picture</a>
         </li>
         <li>
-          <a href="/users/logout">Logout</a>
+          <a href="/auth/logout">Logout</a>
         </li>
       </ul>
     </li>
