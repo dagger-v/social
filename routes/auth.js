@@ -11,7 +11,12 @@ passport.use(User.createStrategy());
 // Serialize and deserialize user
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
-    cb(null, { id: user.id, username: user.username });
+    cb(null, {
+      id: user.id,
+      username: user.username,
+      firstname: user.firstname,
+      lastname: user.lastname,
+    });
   });
 });
 
@@ -44,7 +49,12 @@ router.post("/register", async (req, res) => {
   try {
     // Register user
     const registerUser = await User.register(
-      { username: req.body.username },
+      {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        username: req.body.username,
+        email: req.body.email,
+      },
       req.body.password
     );
     if (registerUser) {
@@ -63,7 +73,10 @@ router.post("/register", async (req, res) => {
 router.post("/login", (req, res) => {
   // Create new user object
   const user = new User({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     username: req.body.username,
+    email: req.body.email,
     password: req.body.password,
   });
 
@@ -73,7 +86,7 @@ router.post("/login", (req, res) => {
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function () {
-        res.redirect("/");
+        res.redirect("/home");
       });
     }
   });

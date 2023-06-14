@@ -38,6 +38,8 @@ const upload = multer({
 router.get("/:user", async function (req, res, next) {
   const user = req.user.username;
   const id = req.user.id;
+  const firstname = req.user.firstname;
+  const lastname = req.user.lastname;
   const path = req.params.user;
   const receiverUsername = req.params.user;
   const receiverUser = await User.findOne({ username: receiverUsername });
@@ -54,12 +56,12 @@ router.get("/:user", async function (req, res, next) {
         id: id,
         path: path,
         receiverUserId: receiverUserId,
+        firstname: firstname,
+        lastname: lastname,
       });
     });
   console.log(user);
-  console.log(path);
-  console.log(`my ID ${id}`);
-  console.log(receiverUserId);
+  console.log(firstname);
 });
 
 router.post("/:user", [

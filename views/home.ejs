@@ -1,7 +1,7 @@
 <%- include("header"); -%> <%if (isAuthenticated) { %> <%- include("sidenav");
 -%>
 <main class="content">
-  <div class="main__home">
+  <div class="home">
     <form action="" method="POST">
       <div>
         <label for="content"></label>
@@ -36,7 +36,7 @@
     <% status_list.forEach(function(status) { %> <% const options = { month:
     'short', day: 'numeric' }; %> <% if (status.author !== user) { %>
     <div class="status">
-      <div class="status-img">
+      <div class="img">
         <img
           class="avatar"
           src="/images/uploads/profilePicture-<%= status.author %>.png"
@@ -44,7 +44,7 @@
         />
       </div>
       <div class="container">
-        <p class="status__name">
+        <p class="name">
           <a href="/users/<%= status.author %>"><%= status.author %></a>
           <span>@<%= status.author %> </span> · <%=
           status.createdAt.toLocaleDateString("en-US", options) %>

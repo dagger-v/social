@@ -26,12 +26,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "public/images/uploads/default.png",
   },
-  friends: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
 });
 
 // hash password

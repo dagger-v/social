@@ -173,7 +173,17 @@ ul li ul li {
   }
 }
 
-.main__home {
+.index {
+  text-align: center;
+  grid-column: 2 / 2;
+  height: 50vh;
+  a {
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+.home {
   form {
     background-color: #fff;
     border: 1px solid #d1d0d0;
@@ -232,7 +242,7 @@ ul li ul li {
     padding-left: 10px;
     padding-bottom: 10px;
   }
-  .status__name {
+  .name {
     font: 15px;
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
@@ -244,7 +254,7 @@ ul li ul li {
   span {
     color: #69676d;
   }
-  .status-img {
+  .img {
     width: 50px;
     height: 50px;
   }

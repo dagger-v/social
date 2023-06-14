@@ -1,3 +1,12 @@
-<%if (!isAuthenticated) { %>
-<h1>Test</h1>
-<% } else { %> <%- include("redirectToHome"); -%> <% } %>
+<%- include("header"); -%> <%if (!isAuthenticated) { %>
+<main class="index">
+  <div class="title">
+    <h1>The Queen's Gambit</h1>
+    <p>
+      Please <a href="/auth/login">Log In</a> or
+      <a href="/auth/register">Register</a> to Continue
+    </p>
+  </div>
+</main>
+<% } else { %> <%- include("redirectToHome"); -%> <% } %> <%- include("footer");
+-%>

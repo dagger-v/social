@@ -171,13 +171,23 @@ ul li ul li {
   background-color: #4caf50 !important;
 }
 
-.main__home form {
+.index {
+  text-align: center;
+  grid-column: 2/2;
+  height: 50vh;
+}
+.index a {
+  text-align: center;
+  text-decoration: none;
+}
+
+.home form {
   background-color: #fff;
   border: 1px solid #d1d0d0;
   border-radius: 5px;
   padding: 20px;
 }
-.main__home textarea {
+.home textarea {
   width: 100%;
   height: 50px;
   padding: 12px 20px;
@@ -188,7 +198,7 @@ ul li ul li {
   font-size: 16px;
   resize: none;
 }
-.main__home .post-btn {
+.home .post-btn {
   background-color: #4681f4;
   border: 1px solid #d4d4d4;
   border-radius: 100px;
@@ -202,18 +212,18 @@ ul li ul li {
   min-height: 40px;
   padding: 0px 15px;
 }
-.main__home .submit_area {
+.home .submit_area {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.main__home .submit_area p {
+.home .submit_area p {
   color: #69676d;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   padding-right: 50px;
 }
-.main__home .submit_area div {
+.home .submit_area div {
   display: flex;
   flex-direction: row;
 }
@@ -229,19 +239,19 @@ ul li ul li {
   padding-left: 10px;
   padding-bottom: 10px;
 }
-.status .status__name {
+.status .name {
   font: 15px;
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
 }
-.status .status__name a {
+.status .name a {
   text-decoration: none;
   color: #050505;
 }
 .status span {
   color: #69676d;
 }
-.status .status-img {
+.status .img {
   width: 50px;
   height: 50px;
 }

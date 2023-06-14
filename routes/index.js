@@ -16,13 +16,21 @@ router.get("/", function (req, res, next) {
 router.get("/home", function (req, res, next) {
   const id = req.user.id;
   const user = req.user.username;
+  const firstname = req.user.firstname;
+  const lastname = req.user.lastname;
   Status.find({}, "content author createdAt")
     .sort({ createdAt: -1 })
     .exec(function (err, list_status) {
       if (err) {
         return next(err);
       }
-      res.render("home", { status_list: list_status, id: id, user });
+      res.render("home", {
+        status_list: list_status,
+        id,
+        user,
+        firstname,
+        lastname,
+      });
     });
 });
 
